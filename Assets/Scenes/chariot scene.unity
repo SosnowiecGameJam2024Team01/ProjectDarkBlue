@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 486382709}
   - component: {fileID: 486382712}
   m_Layer: 0
-  m_Name: Front Body
+  m_Name: Front Body 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -863,7 +863,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad905caaade2a1147989e0155c20274e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drivers: {fileID: 0}
+  drivers:
+  - {fileID: 2051147754}
+  - {fileID: 486382707}
   numOfLaps: 2
   accuracyOfTimer: 0.01
 --- !u!1 &541070466

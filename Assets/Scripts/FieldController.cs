@@ -7,7 +7,7 @@ using UnityEngine;
 public class FieldController : MonoBehaviour
 {
     [Header("Field Objects")]
-    [SerializeField] private GameObject drivers;
+    [SerializeField] private GameObject[] drivers;
     [SerializeField] private int numOfLaps;
     private (GameObject driverObj, int numOfLap, int numOfPonts, float time)[] driver;
     private int places;
@@ -23,9 +23,9 @@ public class FieldController : MonoBehaviour
         places = 0;
         timer = 0f;
         StartCoroutine(timerCoroutine = TimerCoroutine());
-        driver = new (GameObject driverObj, int numOfLap, int numOfPonts, float time)[drivers.transform.childCount];
+        driver = new (GameObject driverObj, int numOfLap, int numOfPonts, float time)[drivers.Length];
         for(int i = 0; i < driver.Length; ++i) 
-            driver[i] = (drivers.transform.GetChild(i).gameObject, 0, 0, timer);
+            driver[i] = (drivers[i], 0, 0, timer);
     }
 
     public void SetStats(GameObject currentDriver, bool isStartPoint)
