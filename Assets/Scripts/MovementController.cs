@@ -7,6 +7,7 @@ public class MovementController : MonoBehaviour
     [Header("Car Settings")]
     public bool arrows = false;
     public float acceleration = 15f;       // Acceleration force applied to the car
+    public float boostMultiplier = 1.3f;
     public float steering = 2f;            // How much the car can steer
 
 
@@ -14,6 +15,7 @@ public class MovementController : MonoBehaviour
     private float currentSpeed = 0f;
     private float inputVertical;
     private float inputHorizontal;
+    private float boostTimer = 0f;
 
     void Start()
     {
@@ -43,6 +45,14 @@ public class MovementController : MonoBehaviour
 
         // Apply forward force based on player input
         Vector2 forward = transform.up * inputVertical * acceleration;
+
+
+
+        if (boostTimer > 0f) { 
+            forward *= boostMultiplier;
+            boostTimer -= Time.fixedDeltaTime;
+        }
+
         rb.AddForce(forward);
 
         // Apply steering based on player input
@@ -57,4 +67,9 @@ public class MovementController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + transform.up * currentSpeed);
     } 
+
+    public void EnableBoost(float boostLength)
+    {
+        boostTimer = Mathf.Max(boostLength, boostTimer);
+    }
 }
