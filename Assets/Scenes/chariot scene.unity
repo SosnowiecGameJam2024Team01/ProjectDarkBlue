@@ -523,8 +523,8 @@ MonoBehaviour:
   arrows: 0
   acceleration: 20
   steering: 15
-  dragForward: 4
-  dragSideways: 5
+  dragForward: 3
+  dragSideways: 3.5
 --- !u!4 &486382711
 Transform:
   m_ObjectHideFlags: 0
@@ -638,8 +638,8 @@ GameObject:
   - component: {fileID: 541070472}
   - component: {fileID: 541070471}
   - component: {fileID: 541070470}
-  - component: {fileID: 541070469}
   - component: {fileID: 541070468}
+  - component: {fileID: 541070474}
   m_Layer: 0
   m_Name: Follower
   m_TagString: Untagged
@@ -676,27 +676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragForward: 0.5
-  dragSideways: 3
---- !u!232 &541070469
-DistanceJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541070466}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 1
-  m_ConnectedRigidBody: {fileID: 486382708}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0.34}
-  m_ConnectedAnchor: {x: 0, y: -0.18}
-  m_AutoConfigureDistance: 0
-  m_Distance: 0.79
-  m_MaxDistanceOnly: 0
+  dragSideways: 1
 --- !u!61 &541070470
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -811,6 +791,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!233 &541070474
+HingeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541070466}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 486382708}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 3
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0.99}
+  m_ConnectedAnchor: {x: 0, y: -0.29999995}
+  m_UseMotor: 0
+  m_Motor:
+    m_MotorSpeed: 0
+    m_MaximumMotorForce: 10000
+  m_UseLimits: 1
+  m_AngleLimits:
+    m_LowerAngle: -90
+    m_UpperAngle: 90
 --- !u!1 &678680241
 GameObject:
   m_ObjectHideFlags: 0
