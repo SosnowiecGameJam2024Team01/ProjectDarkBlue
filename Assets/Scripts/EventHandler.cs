@@ -56,7 +56,7 @@ public class EventHandler : MonoBehaviour
 	Vector2 FindPlaceToSpawn()
 	{
 		Vector2 position;
-		Debug.Log(PlayerController.Instance);
+
 		do
 		{
 			EventZone zone = dropZones[Random.Range(0, dropZones.Count)];
