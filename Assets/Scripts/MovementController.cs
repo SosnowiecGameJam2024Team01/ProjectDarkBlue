@@ -5,8 +5,8 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     [Header("Car Settings")]
+    public bool arrows = false;
     public float acceleration = 15f;       // Acceleration force applied to the car
-    public float maxSpeed = 20f;           // Maximum speed of the car
     public float steering = 2f;            // How much the car can steer
 
     [Header("Drag Settings")]
@@ -28,8 +28,16 @@ public class MovementController : MonoBehaviour
     void Update()
     {
         // Get player input
-        inputVertical = Input.GetAxis("Vertical");
-        inputHorizontal = Input.GetAxis("Horizontal");
+        if (arrows)
+        {
+            inputVertical = Input.GetAxis("Vertical");
+            inputHorizontal = Input.GetAxis("Horizontal");
+        }
+        else
+        {
+            inputVertical = Input.GetAxis("Vertical2");
+            inputHorizontal = Input.GetAxis("Horizontal2");
+        }
         
     }
 
