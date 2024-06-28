@@ -6,9 +6,9 @@ public class SpawnBananana : EventBase
 {
 	[SerializeField] GameObject prefab;
 
-	public override void Trigger(PlayerType type)
+	public override void Trigger(PlayerType type, Vector2 position)
 	{
-		Instantiate(prefab, PlayerController.Instance.GetPointInFrontInView(type), Quaternion.identity);
+		Instantiate(prefab, position, Quaternion.identity);
 	}
 
 }
