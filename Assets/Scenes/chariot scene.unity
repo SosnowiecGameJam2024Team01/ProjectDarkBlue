@@ -135,8 +135,8 @@ GameObject:
   - component: {fileID: 63766001}
   - component: {fileID: 63766000}
   - component: {fileID: 63766003}
+  - component: {fileID: 63766007}
   - component: {fileID: 63766004}
-  - component: {fileID: 63766005}
   - component: {fileID: 63766006}
   m_Layer: 0
   m_Name: Follower
@@ -275,26 +275,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!232 &63766005
-DistanceJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 63765999}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 1
-  m_ConnectedRigidBody: {fileID: 2051147755}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0.34}
-  m_ConnectedAnchor: {x: 0, y: -0.18}
-  m_AutoConfigureDistance: 0
-  m_Distance: 0.79
-  m_MaxDistanceOnly: 0
 --- !u!114 &63766006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,6 +289,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragForward: 0.5
   dragSideways: 3
+--- !u!233 &63766007
+HingeJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63765999}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 2051147755}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 3
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0.99}
+  m_ConnectedAnchor: {x: 0, y: -0.3000002}
+  m_UseMotor: 0
+  m_Motor:
+    m_MotorSpeed: 0
+    m_MaximumMotorForce: 10000
+  m_UseLimits: 1
+  m_AngleLimits:
+    m_LowerAngle: -90
+    m_UpperAngle: 90
 --- !u!1 &229301295
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +376,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.88
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -637,9 +642,11 @@ GameObject:
   m_Component:
   - component: {fileID: 486382711}
   - component: {fileID: 486382708}
-  - component: {fileID: 486382710}
   - component: {fileID: 486382709}
+  - component: {fileID: 486382710}
   - component: {fileID: 486382712}
+  - component: {fileID: 486382713}
+  - component: {fileID: 486382714}
   m_Layer: 0
   m_Name: Front Body 2
   m_TagString: Untagged
@@ -734,8 +741,6 @@ MonoBehaviour:
   arrows: 0
   acceleration: 20
   steering: 15
-  dragForward: 3
-  dragSideways: 3.5
 --- !u!4 &486382711
 Transform:
   m_ObjectHideFlags: 0
@@ -766,6 +771,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: {fileID: 904627870}
   startPoint: {fileID: 871731036}
+--- !u!114 &486382713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486382707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11dd8f6f178998a4286e688baf17fbfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  sightRange: 0
+--- !u!114 &486382714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486382707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2dc62680ae00e49bbeb14c9059669c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragForward: 3
+  dragSideways: 3.5
 --- !u!1 &494968744
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,9 +810,11 @@ GameObject:
   - component: {fileID: 494968746}
   - component: {fileID: 494968745}
   - component: {fileID: 494968747}
+  - component: {fileID: 494968748}
+  - component: {fileID: 494968749}
   m_Layer: 0
   m_Name: Field
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -868,6 +903,53 @@ MonoBehaviour:
   - {fileID: 486382707}
   numOfLaps: 2
   accuracyOfTimer: 0.01
+--- !u!70 &494968748
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494968744}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 6.9, y: 3.8}
+  m_Direction: 1
+--- !u!114 &494968749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494968744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 394d6d5ef32761142b503a199ec8f241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &541070466
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,9 +962,9 @@ GameObject:
   - component: {fileID: 541070473}
   - component: {fileID: 541070472}
   - component: {fileID: 541070471}
+  - component: {fileID: 541070474}
   - component: {fileID: 541070470}
   - component: {fileID: 541070468}
-  - component: {fileID: 541070474}
   m_Layer: 0
   m_Name: Follower
   m_TagString: Untagged
@@ -1241,7 +1323,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.88
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2146,6 +2228,7 @@ GameObject:
   - component: {fileID: 2051147755}
   - component: {fileID: 2051147757}
   - component: {fileID: 2051147758}
+  - component: {fileID: 2051147760}
   - component: {fileID: 2051147759}
   m_Layer: 0
   m_Name: Front Body
@@ -2212,8 +2295,6 @@ MonoBehaviour:
   arrows: 1
   acceleration: 20
   steering: 15
-  dragForward: 4
-  dragSideways: 5
 --- !u!61 &2051147758
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2273,6 +2354,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: {fileID: 904627870}
   startPoint: {fileID: 871731036}
+--- !u!114 &2051147760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051147754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2dc62680ae00e49bbeb14c9059669c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragForward: 3
+  dragSideways: 3.5
 --- !u!1 &2132819443
 GameObject:
   m_ObjectHideFlags: 0
