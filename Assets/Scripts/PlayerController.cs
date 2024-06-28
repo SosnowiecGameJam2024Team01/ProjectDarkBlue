@@ -63,6 +63,6 @@ public class PlayerController : MonoBehaviour
 
 	public bool InVision(Vector2 position)
 	{
-		return Vector2.Distance(dionysus.transform.position, position) < dionysus.sightRange && Vector2.Distance(venus.transform.position, position) < venus.sightRange;
+		return Vector2.Distance(dionysus.transform.position, position) < dionysus.sightRange || Vector2.Distance(venus.transform.position, position) < venus.sightRange;
 	}
 }

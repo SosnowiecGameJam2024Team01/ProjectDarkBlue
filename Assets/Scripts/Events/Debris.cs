@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Debris : MonoBehaviour
 {
-    float lifeTime = 3;
+    [SerializeField]float lifeTime = 3;
 	
     private void Update()
 	{

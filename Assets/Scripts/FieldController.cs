@@ -55,8 +55,8 @@ public class FieldController : MonoBehaviour
     private void SetPlaces()
     {
         placesStats = "";
-        (GameObject driverObj, int numOfLap, int numOfPonts, float time)[] statsOfDrivers = driver;
-        Array.Sort(statsOfDrivers, (x, y) => y.numOfPonts.CompareTo(x.numOfLap));
+        (GameObject driverObj, int numOfLap, int numOfPoints, float time)[] statsOfDrivers = driver;
+        Array.Sort(statsOfDrivers, (x, y) => y.numOfPoints.CompareTo(x.numOfPoints));
         Array.Sort(statsOfDrivers, (x, y) => y.numOfLap.CompareTo(x.numOfLap));
         for (int i = 0; i < statsOfDrivers.Length; ++i)
             placesStats += $"{i + 1} Place: {statsOfDrivers[i].driverObj.name}\n";
