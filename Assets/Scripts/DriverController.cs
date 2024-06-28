@@ -52,7 +52,7 @@ public class DriverController : MonoBehaviour
         if (other.CompareTag("StartZone") && IsAllPoints())
         {
             ResetPoints();
-            field.SetStats(other.gameObject, true);
+            field.SetStats(gameObject, true);
             Debug.Log("Lap passed");
         }
     }
