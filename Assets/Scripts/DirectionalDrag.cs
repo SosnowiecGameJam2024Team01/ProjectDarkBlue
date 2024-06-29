@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -14,7 +15,8 @@ public class DirectionalDrag : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool slowed = false;
-    void Start()
+	private bool iced = false;
+	void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -26,7 +28,7 @@ public class DirectionalDrag : MonoBehaviour
 
         // Apply different drag forces in local directions
         localVelocity.x *= 1.0f - dragSideways * Time.fixedDeltaTime;
-        localVelocity.y *= 1.0f - dragForward * Time.fixedDeltaTime;
+        localVelocity.y *= 1.0f - (iced ? dragForward * 0.5f : dragForward) * Time.fixedDeltaTime;
 
         if (slowed)
         localVelocity *= 1f - dragGrass * Time.fixedDeltaTime;
@@ -45,6 +47,9 @@ public class DirectionalDrag : MonoBehaviour
                 case Persistant.PersistantType.Slow:
                     slowed = true;
                     break;
+                case Persistant.PersistantType.Ice:
+                    iced = true;
+					break;
 			}
         }
     }
@@ -56,7 +61,10 @@ public class DirectionalDrag : MonoBehaviour
 			switch (collision.GetComponent<Persistant>().type)
 			{
 				case Persistant.PersistantType.Slow:
-					slowed = true;
+					slowed = false;
+					break;
+				case Persistant.PersistantType.Ice:
+					iced = false;
 					break;
 			}
 		}

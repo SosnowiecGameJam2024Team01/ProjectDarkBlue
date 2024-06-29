@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using static Debris;
 
 
@@ -15,6 +16,7 @@ public class Debris : MonoBehaviour
 	public PickupType pickupType = PickupType.Boost;
     [SerializeField]float lifeTime = 3;
 	
+
     private void Update()
 	{
 		CheckIfToDestroyed();
@@ -28,6 +30,8 @@ public class Debris : MonoBehaviour
         {
             Destroy(gameObject);
         }
+		ParticleSystem sa;
+		
 	}
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -44,7 +48,6 @@ public class Debris : MonoBehaviour
 				collision.gameObject.GetComponent<MovementController>().Knockback(transform.position, 1000);
 				break;
         }
-
         Destroy(gameObject);
     }
 }

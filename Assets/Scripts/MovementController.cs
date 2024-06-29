@@ -17,8 +17,9 @@ public class MovementController : MonoBehaviour
     private float inputHorizontal;
     private float boostTimer = 0f;
     private float wobbleTimer = 0f;
+	private float iceTimer = 0f;
 
-    void Start()
+	void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         
@@ -66,7 +67,7 @@ public class MovementController : MonoBehaviour
 
         // Apply steering based on player input
         
-        rb.angularVelocity -= inputHorizontal * steering ;
+        rb.angularVelocity -= inputHorizontal * (iceTimer > 0 ? steering * 0.5f : steering);
         
     }
 	void OnTriggerStay2D(Collider2D collision)
@@ -81,6 +82,9 @@ public class MovementController : MonoBehaviour
 				case Persistant.PersistantType.Wobble:
 					EnableWobble(0.1f);
 					break;
+                case Persistant.PersistantType.Ice:
+                    EnableIce(0.1f);
+                    break;
 			}
 		}
 	}
@@ -100,6 +104,11 @@ public class MovementController : MonoBehaviour
     {
         wobbleTimer = Mathf.Max(wobbleLength, wobbleTimer);
     }
+
+    public void EnableIce(float iceLength)
+	{
+		iceTimer = Mathf.Max(iceLength, iceTimer);
+	}
     
     public void Knockback(Vector2 from, float strength)
     {
