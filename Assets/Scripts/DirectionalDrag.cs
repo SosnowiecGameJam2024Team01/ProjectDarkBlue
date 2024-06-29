@@ -14,11 +14,17 @@ public class DirectionalDrag : MonoBehaviour
 
 
     private Rigidbody2D rb;
+    private MovementController controller;
     private bool slowed = false;
 	private bool iced = false;
 	void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        controller = GetComponent<MovementController>();
+        if(controller == null)
+        {
+            controller= GetComponent<FakeMovementController>().realController;
+        }
     }
 
     void FixedUpdate()
@@ -27,10 +33,10 @@ public class DirectionalDrag : MonoBehaviour
         Vector2 localVelocity = transform.InverseTransformDirection(rb.velocity);
 
         // Apply different drag forces in local directions
-        localVelocity.x *= 1.0f - (iced ? dragSideways *0.5f : dragSideways) * Time.fixedDeltaTime;
-        localVelocity.y *= 1.0f - (iced ? dragForward * 0.5f : dragForward) * Time.fixedDeltaTime;
+        localVelocity.x *= 1.0f - (iced&&!controller.isFlying ? dragSideways *0.5f : dragSideways) * Time.fixedDeltaTime;
+        localVelocity.y *= 1.0f - (iced && !controller.isFlying ? dragForward * 0.5f : dragForward) * Time.fixedDeltaTime;
 
-        if (slowed)
+        if (slowed && !controller.isFlying)
         localVelocity *= 1f - dragGrass * Time.fixedDeltaTime;
 
         // Convert the local velocity back to world space

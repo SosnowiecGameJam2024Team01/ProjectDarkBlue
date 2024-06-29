@@ -87,7 +87,7 @@ public class MovementController : MonoBehaviour
                 }
                 foreach(var pSys in particlesToPlay)
                 {
-                    pSys.Pause();
+                    pSys.Stop();
                 }
             }
         }
@@ -184,7 +184,7 @@ public class MovementController : MonoBehaviour
         iceTimer = 0;
         foreach (var pSys in particlesToPause)
         {
-            pSys.Pause();
+            pSys.Stop();
         }
         foreach (var pSys in particlesToPlay)
         {

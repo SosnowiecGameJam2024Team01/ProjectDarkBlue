@@ -624,6 +624,18 @@ PrefabInstance:
       propertyPath: realController
       value: 
       objectReference: {fileID: 217502192}
+    - target: {fileID: 4733195827497195424, guid: 27849d779d878934ba7faf160479d808, type: 3}
+      propertyPath: throwPrefab
+      value: 
+      objectReference: {fileID: 113051098822847743, guid: 18143d9ada22e1d42bc9dbdb0812ac7a, type: 3}
+    - target: {fileID: 4733195827497195424, guid: 27849d779d878934ba7faf160479d808, type: 3}
+      propertyPath: particlesToPlay.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4733195827497195424, guid: 27849d779d878934ba7faf160479d808, type: 3}
+      propertyPath: particlesToPlay.Array.data[1]
+      value: 
+      objectReference: {fileID: 553196053}
     - target: {fileID: 5552115654146667539, guid: 27849d779d878934ba7faf160479d808, type: 3}
       propertyPath: points
       value: 
@@ -1548,7 +1560,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  lifeTime: 3
 --- !u!1 &518301509
 GameObject:
   m_ObjectHideFlags: 0
@@ -1798,6 +1809,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536294952}
   m_CullTransparentMesh: 1
+--- !u!198 &553196053 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1697576450255459868, guid: 27849d779d878934ba7faf160479d808, type: 3}
+  m_PrefabInstance: {fileID: 217502191}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &627597194
 GameObject:
   m_ObjectHideFlags: 0
@@ -2724,7 +2740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1167988379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3304,6 +3320,14 @@ PrefabInstance:
       propertyPath: arrows
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4733195827497195424, guid: 27849d779d878934ba7faf160479d808, type: 3}
+      propertyPath: abilityBar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4733195827497195424, guid: 27849d779d878934ba7faf160479d808, type: 3}
+      propertyPath: throwPrefab
+      value: 
+      objectReference: {fileID: 113051098822847743, guid: 3391fabaeb279f7438c8a0f94424bcca, type: 3}
     - target: {fileID: 5552115654146667539, guid: 27849d779d878934ba7faf160479d808, type: 3}
       propertyPath: points
       value: 

@@ -15038,6 +15038,7 @@ MonoBehaviour:
   - {fileID: 6931540743141368044}
   particlesToPlay:
   - {fileID: 4977676079156475171}
+  - {fileID: 1697576450255459868}
   throwPrefab: {fileID: 0}
   throwPos: {fileID: 6024884954755540124}
   isPaused: 0
