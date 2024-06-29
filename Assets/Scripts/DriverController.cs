@@ -8,6 +8,8 @@ public class DriverController : MonoBehaviour
     [SerializeField] private GameObject points;
     private (GameObject pointObject, bool isPassed)[] point;
     [SerializeField] private GameObject startPoint;
+    [SerializeField] private GameObject[] pickUpsUI;
+    private int pickUps = 0;
     private FieldController field;
     void Start()
     {
@@ -54,6 +56,11 @@ public class DriverController : MonoBehaviour
             ResetPoints();
             field.SetStats(gameObject, true);
             Debug.Log("Lap passed");
+        }
+        if (other.CompareTag("PickUp"))
+        {
+            Destroy(other.gameObject);
+            pickUpsUI[pickUps++].SetActive(true);
         }
     }
 
