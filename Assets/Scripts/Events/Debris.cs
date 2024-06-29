@@ -37,16 +37,20 @@ public class Debris : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+		if (collision.GetComponent<MovementController>() == null || collision.GetComponent<MovementController>().isFlying) return;
+		
+		MovementController controller = collision.GetComponent<MovementController>();
+
         switch (pickupType)
         {
             case PickupType.Ability:
-				collision.gameObject.GetComponent<MovementController>().abilityBar++;
+				controller.abilityBar=Mathf.Max(controller.abilityBar+1, controller.maxAbilityBar);
 				break;
             case PickupType.Wobble:
-				collision.gameObject.GetComponent<MovementController>().EnableWobble(10);
+                controller.EnableWobble(10);
 				break;
 			case PickupType.Knockback:
-				collision.gameObject.GetComponent<MovementController>().Knockback(transform.position, 1000);
+                controller.Knockback(transform.position, 1000);
 				break;
 			case PickupType.Bird:
 				CanvasEffects.Instance.ShowBird(collision.gameObject.GetComponent<Player>().type);

@@ -19,8 +19,10 @@ public class MovementController : MonoBehaviour
     private float boostTimer = 0f;
     private float wobbleTimer = 0f;
 	private float iceTimer = 0f;
+    private float flyTimer = 0f;
 
     public bool isPaused = false;
+    public bool isFlying = false;
 
     void Start()
     {
@@ -50,6 +52,7 @@ public class MovementController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isPaused) return;
 
         Vector2 driveDir = transform.up;
         if (wobbleTimer > 0f)
@@ -66,17 +69,25 @@ public class MovementController : MonoBehaviour
             forward *= boostMultiplier;
             boostTimer -= Time.fixedDeltaTime;
         }
+        if (flyTimer > 0f)
+        {
+            flyTimer -= Time.fixedDeltaTime;
+            if (flyTimer < 0)
+            {
+                isFlying = false;
+            }
+        }
 
         rb.AddForce(forward);
 
         // Apply steering based on player input
         
-        rb.angularVelocity -= inputHorizontal * (iceTimer > 0 ? steering * 0.5f : steering);
+        rb.angularVelocity -= inputHorizontal * ((iceTimer > 0)&&!isFlying ? steering * 0.5f : steering);
         
     }
 	void OnTriggerStay2D(Collider2D collision)
 	{
-		if (collision.CompareTag("PersistantEffect"))
+		if (collision.CompareTag("PersistantEffect") && !isFlying)
 		{
 			switch (collision.GetComponent<Persistant>().type)
 			{
@@ -118,23 +129,45 @@ public class MovementController : MonoBehaviour
     {
         rb.AddForce(((Vector2)transform.position - from).normalized * strength);
     }
-        
+
     private void UseAbility()
     {
-        int abilityLevel = (abilityBar * 3)  / maxAbilityBar;
+        int abilityLevel = (abilityBar * 3) / maxAbilityBar;
         abilityBar -= abilityLevel * maxAbilityBar / 3;
         switch (abilityLevel)
         {
             case 0:
                 break;
             case 1:
+                Throw();
                 break;
             case 2:
+                EnableBoost(3);
                 break;
             case 3:
+                MegaBoost(10);
                 break;
 
         }
-        
 
+    }
+    public void Throw()
+    {
+
+    }
+
+    public void MegaBoost(float length)
+    {
+        EnableBoost(length);
+        EnableFly(length);
+    } 
+
+    public void EnableFly(float length)
+    {
+        flyTimer = length;
+        isFlying = true;
+        wobbleTimer = 0;
+        iceTimer = 0;
+       
+    }
 }
