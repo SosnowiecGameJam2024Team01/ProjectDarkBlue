@@ -11,6 +11,10 @@ public class MovementController : MonoBehaviour
     public float steering = 2f;            // How much the car can steer
     public int abilityBar = 0;
     public int maxAbilityBar = 9;
+    [Header("Flying")]
+    public ParticleSystem[] particlesToPause;
+    public ParticleSystem[] particlesToPlay;
+
 
     private Rigidbody2D rb;
     private float currentSpeed = 0f;
@@ -46,8 +50,8 @@ public class MovementController : MonoBehaviour
         }
 
         //wobble and boost testing REMOVE
-        if (Input.GetKeyDown(KeyCode.E)) { EnableWobble( 10); }
-        if (Input.GetKeyDown(KeyCode.Q)) { EnableBoost( 10); }
+        if (Input.GetKeyDown(KeyCode.E)) { UseAbility(); }
+        
     }
 
     void FixedUpdate()
@@ -75,6 +79,14 @@ public class MovementController : MonoBehaviour
             if (flyTimer < 0)
             {
                 isFlying = false;
+                foreach(var pSys in particlesToPause)
+                {
+                    pSys.Play();
+                }
+                foreach(var pSys in particlesToPlay)
+                {
+                    pSys.Pause();
+                }
             }
         }
 
@@ -168,6 +180,13 @@ public class MovementController : MonoBehaviour
         isFlying = true;
         wobbleTimer = 0;
         iceTimer = 0;
-       
+        foreach (var pSys in particlesToPause)
+        {
+            pSys.Pause();
+        }
+        foreach (var pSys in particlesToPlay)
+        {
+            pSys.Play();
+        }
     }
 }
