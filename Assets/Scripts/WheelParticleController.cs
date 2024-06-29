@@ -30,8 +30,7 @@ public class WheelParticleController : MonoBehaviour
 
     void SetRateOverDistanceMultiplier(float multiplier, ParticleSystem particleSystem)
     {
-        // Access the EmissionModule of the ParticleSystem
-        ParticleSystem.EmissionModule emissionModule = particleSystem.emission;
+        var emissionModule = particleSystem.emission;
 
         // Set the rateOverDistanceMultiplier directly
         emissionModule.rateOverDistanceMultiplier = multiplier;

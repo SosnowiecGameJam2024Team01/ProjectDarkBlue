@@ -16,7 +16,9 @@ public class Debris : MonoBehaviour
 	}
 	public PickupType pickupType = PickupType.Ability;
     [SerializeField]float lifeTime = 3;
-	
+	public MovementController thrownByController = null;
+
+
 
     private void Update()
 	{
@@ -37,14 +39,28 @@ public class Debris : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-		if (collision.GetComponent<MovementController>() == null || collision.GetComponent<MovementController>().isFlying) return;
+		MovementController controller;
+
+        if (collision.GetComponent<MovementController>() == null) {
+			if (collision.GetComponent<FakeMovementController>() == null) return;
+			else controller = collision.GetComponent<FakeMovementController>().realController;
+		}
+		else
+		{
+            controller = collision.GetComponent<MovementController>();
+        }
+
+
+
+
+		if (controller.isFlying || controller == thrownByController) return;
 		
-		MovementController controller = collision.GetComponent<MovementController>();
+		
 
         switch (pickupType)
         {
             case PickupType.Ability:
-				controller.abilityBar=Mathf.Max(controller.abilityBar+1, controller.maxAbilityBar);
+				controller.abilityBar=Mathf.Min(controller.abilityBar+1, controller.maxAbilityBar);
 				break;
             case PickupType.Wobble:
                 controller.EnableWobble(10);
