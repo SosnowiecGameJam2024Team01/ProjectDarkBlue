@@ -18,6 +18,8 @@ public class MovementController : MonoBehaviour
     private float boostTimer = 0f;
     private float wobbleTimer = 0f;
 
+    public bool isPaused = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,6 +28,7 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
+        if (isPaused) return;
         // Get player input
         if (arrows)
         {
