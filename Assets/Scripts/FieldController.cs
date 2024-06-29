@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class FieldController : MonoBehaviour
 {
+    public static FieldController Instance;
     [Header("Field Objects")]
     [SerializeField] private GameObject[] drivers;
     [SerializeField] private int numOfLaps;
@@ -18,7 +20,19 @@ public class FieldController : MonoBehaviour
     private float timer = 0f;
     private IEnumerator timerCoroutine;
 
-    void Start()
+    [Header("MapBounds")]
+	[SerializeField] Vector2 middlePoint;
+	[SerializeField] Vector2 topRight;
+	[SerializeField] Vector2 bottomLeft;
+
+
+	private void Awake()
+	{
+        if (Instance == null) Instance = this;
+        else Debug.LogError("Two field controllers");
+	}
+
+	void Start()
     {
         places = 0;
         timer = 0f;
@@ -69,4 +83,16 @@ public class FieldController : MonoBehaviour
         timer += accuracyOfTimer;
         StartCoroutine(timerCoroutine = TimerCoroutine());
     }
+
+    public Vector2 GetTopRight() { return topRight; }
+    public Vector2 GetBottomLeft() { return bottomLeft;  }
+
+	private void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(middlePoint + new Vector2(topRight.x, topRight.y), middlePoint + new Vector2(topRight.x, bottomLeft.y));
+        Gizmos.DrawLine(middlePoint + new Vector2(topRight.x, bottomLeft.y), middlePoint + new Vector2(bottomLeft.x, bottomLeft.y));
+        Gizmos.DrawLine(middlePoint + new Vector2(bottomLeft.x, bottomLeft.y), middlePoint + new Vector2(bottomLeft.x, topRight.y));
+        Gizmos.DrawLine(middlePoint + new Vector2(bottomLeft.x, topRight.y), middlePoint + new Vector2(topRight.x, topRight.y));
+	}
 }

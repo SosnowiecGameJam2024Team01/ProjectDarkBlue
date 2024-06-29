@@ -37,6 +37,22 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public Vector2 GetRelativePosition(PlayerType type)
+	{
+		Vector2 postion = Vector2.zero;
+		if (type == PlayerType.Dionysus) postion = dionysus.transform.position;
+		if (type == PlayerType.Venus) postion = venus.transform.position;
+
+		Vector2 topRight = FieldController.Instance.GetTopRight();
+		Vector2 botLeft = FieldController.Instance.GetBottomLeft();
+
+		float heigth = Mathf.Abs(topRight.y) + Mathf.Abs(botLeft.y);
+		float width = Mathf.Abs(topRight.x) + Mathf.Abs(botLeft.x);
+
+
+		return postion;
+	}
+
 	public Vector2 GetPointInFrontInView(PlayerType type)
 	{
 		//tofill
