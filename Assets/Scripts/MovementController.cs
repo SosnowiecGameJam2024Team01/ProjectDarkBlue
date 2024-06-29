@@ -14,7 +14,9 @@ public class MovementController : MonoBehaviour
     [Header("Flying")]
     public ParticleSystem[] particlesToPause;
     public ParticleSystem[] particlesToPlay;
-
+    [Header("Throwing")]
+    public GameObject throwPrefab;
+    public Transform throwPos;
 
     private Rigidbody2D rb;
     private float currentSpeed = 0f;
@@ -165,7 +167,8 @@ public class MovementController : MonoBehaviour
     }
     public void Throw()
     {
-
+        GameObject thrownObj = Instantiate(throwPrefab, transform.position, transform.rotation);
+        thrownObj.GetComponent<Debris>().thrownByController = this;
     }
 
     public void MegaBoost(float length)
