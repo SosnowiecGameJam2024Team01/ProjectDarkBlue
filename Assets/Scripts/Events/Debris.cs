@@ -49,8 +49,7 @@ public class Debris : MonoBehaviour
 				collision.gameObject.GetComponent<MovementController>().Knockback(transform.position, 1000);
 				break;
 			case PickupType.Bird:
-				//birb spawn
-				//collision.gameObject.GetComponent<Player>();
+				CanvasEffects.Instance.ShowBird(collision.gameObject.GetComponent<Player>().type);
 				break;
         }
         Destroy(gameObject);
