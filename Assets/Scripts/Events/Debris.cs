@@ -11,7 +11,8 @@ public class Debris : MonoBehaviour
 	{
 		Boost,
 		Wobble,
-		Knockback
+		Knockback,
+		Bird
 	}
 	public PickupType pickupType = PickupType.Boost;
     [SerializeField]float lifeTime = 3;
@@ -46,6 +47,10 @@ public class Debris : MonoBehaviour
 				break;
 			case PickupType.Knockback:
 				collision.gameObject.GetComponent<MovementController>().Knockback(transform.position, 1000);
+				break;
+			case PickupType.Bird:
+				//birb spawn
+				//collision.gameObject.GetComponent<Player>();
 				break;
         }
         Destroy(gameObject);
