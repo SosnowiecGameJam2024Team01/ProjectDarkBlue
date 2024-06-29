@@ -8,6 +8,8 @@ TagManager:
   - StartZone
   - PersistantEffect
   - PickUp
+  - Grass
+  - SpawnEvents
   layers:
   - Default
   - TransparentFX

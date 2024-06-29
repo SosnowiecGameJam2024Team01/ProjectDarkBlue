@@ -118,10 +118,10 @@ public class MovementController : MonoBehaviour
     {
         rb.AddForce(((Vector2)transform.position - from).normalized * strength);
     }
-        
+
     private void UseAbility()
     {
-        int abilityLevel = (abilityBar * 3)  / maxAbilityBar;
+        int abilityLevel = (abilityBar * 3) / maxAbilityBar;
         abilityBar -= abilityLevel * maxAbilityBar / 3;
         switch (abilityLevel)
         {
@@ -135,6 +135,6 @@ public class MovementController : MonoBehaviour
                 break;
 
         }
-        
+    }
 
 }

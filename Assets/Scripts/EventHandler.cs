@@ -19,7 +19,9 @@ public class EventHandler : MonoBehaviour
 	[SerializeField] List<EventBase> dionysusEvents;
 	[SerializeField] List<EventBase> venusEvents;
 
-	[SerializeField] List<EventZone> dropZones;
+	[SerializeField] EventZone zone;
+	[SerializeField] Collider2D trueBound;
+	[SerializeField] Collider2D coliderBound;
 
 	float nextDionysusEvent;
 	float nextVenusEvent;
@@ -59,23 +61,20 @@ public class EventHandler : MonoBehaviour
 
 		do
 		{
-			EventZone zone = dropZones[Random.Range(0, dropZones.Count)];
 			position = zone.position + new Vector2(Random.Range(-zone.size.x, zone.size.x), Random.Range(-zone.size.y, zone.size.y));
 		}
-		while (PlayerController.Instance.InVision(position));
+		while (PlayerController.Instance.InVision(position) || !trueBound.bounds.Contains(position) || coliderBound.bounds.Contains(position));
 		return position;
 	}
 
 	private void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.black;
-		dropZones.ForEach(zone =>
-		{
+
 			Gizmos.DrawLine(zone.position + new Vector2(zone.size.x, zone.size.y), zone.position + new Vector2(zone.size.x, -zone.size.y));
 			Gizmos.DrawLine(zone.position + new Vector2(zone.size.x, -zone.size.y), zone.position + new Vector2(-zone.size.x, -zone.size.y));
 			Gizmos.DrawLine(zone.position + new Vector2(-zone.size.x, -zone.size.y), zone.position + new Vector2(-zone.size.x, zone.size.y));
 			Gizmos.DrawLine(zone.position + new Vector2(-zone.size.x, zone.size.y), zone.position + new Vector2(zone.size.x, zone.size.y));
-		});
 	}
 
 }
