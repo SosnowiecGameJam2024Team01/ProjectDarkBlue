@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Point
   - StartZone
-  - Grass
+  - PersistantEffect
   - PickUp
   layers:
   - Default

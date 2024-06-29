@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Debris;
+
 
 public class Debris : MonoBehaviour
 {
-
-	public string pickupType = "None";
+	public enum PickupType
+	{
+		Boost,
+		Wobble,
+		Knockback
+	}
+	public PickupType pickupType = PickupType.Boost;
     [SerializeField]float lifeTime = 3;
 	
     private void Update()
@@ -25,14 +32,17 @@ public class Debris : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(pickupType == "Boost")
+        switch (pickupType)
         {
-            collision.gameObject.GetComponent<MovementController>().EnableBoost(10);
-          }
-
-        if (pickupType == "Wobble")
-        {
-            collision.gameObject.GetComponent<MovementController>().EnableWobble(10);
+            case PickupType.Boost:
+				collision.gameObject.GetComponent<MovementController>().EnableBoost(10);
+				break;
+            case PickupType.Wobble:
+				collision.gameObject.GetComponent<MovementController>().EnableWobble(10);
+				break;
+			case PickupType.Knockback:
+				collision.gameObject.GetComponent<MovementController>().Knockback(transform.position, 1000);
+				break;
         }
 
         Destroy(gameObject);

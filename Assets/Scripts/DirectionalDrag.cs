@@ -10,8 +10,10 @@ public class DirectionalDrag : MonoBehaviour
     public float dragSideways = 2.0f;    // Drag in the sideways direction (local x-axis)
     private float dragGrass = 5f;
 
+
+
     private Rigidbody2D rb;
-    private bool onGrass = false;
+    private bool slowed = false;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,7 +28,7 @@ public class DirectionalDrag : MonoBehaviour
         localVelocity.x *= 1.0f - dragSideways * Time.fixedDeltaTime;
         localVelocity.y *= 1.0f - dragForward * Time.fixedDeltaTime;
 
-        if (onGrass )
+        if (slowed)
         localVelocity *= 1f - dragGrass * Time.fixedDeltaTime;
 
         // Convert the local velocity back to world space
@@ -36,17 +38,27 @@ public class DirectionalDrag : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Grass"))
+        if (collision.CompareTag("PersistantEffect"))
         {
-            onGrass = true;
+            switch(collision.GetComponent<Persistant>().type)
+            {
+                case Persistant.PersistantType.Slow:
+                    slowed = true;
+                    break;
+			}
         }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Grass"))
+        if (collision.CompareTag("PersistantEffect"))
         {
-            onGrass = false;
-        }
+			switch (collision.GetComponent<Persistant>().type)
+			{
+				case Persistant.PersistantType.Slow:
+					slowed = true;
+					break;
+			}
+		}
     }
 }
