@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5161512209619561549}
   - component: {fileID: 8228386890821986981}
   - component: {fileID: 7889788768982648158}
-  - component: {fileID: 4114642125361232442}
+  - component: {fileID: -4146864479879552714}
   m_Layer: 0
-  m_Name: Boost
+  m_Name: Bananana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca78ecba8801eba448c02a004c8f02b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupType: Boost
+  pickupType: 1
   lifeTime: 20
---- !u!61 &4114642125361232442
+--- !u!61 &-4146864479879552714
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

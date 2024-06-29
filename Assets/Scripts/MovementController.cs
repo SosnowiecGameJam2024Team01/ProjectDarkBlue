@@ -69,8 +69,23 @@ public class MovementController : MonoBehaviour
         rb.angularVelocity -= inputHorizontal * steering ;
         
     }
+	void OnTriggerStay2D(Collider2D collision)
+	{
+		if (collision.CompareTag("PersistantEffect"))
+		{
+			switch (collision.GetComponent<Persistant>().type)
+			{
+				case Persistant.PersistantType.Speed:
+                    EnableBoost(0.1f);
+					break;
+				case Persistant.PersistantType.Wobble:
+					EnableWobble(0.1f);
+					break;
+			}
+		}
+	}
 
-    private void OnDrawGizmos()
+	private void OnDrawGizmos()
     {
         // Visualize car's current speed in the editor
         Gizmos.color = Color.red;
@@ -86,6 +101,10 @@ public class MovementController : MonoBehaviour
         wobbleTimer = Mathf.Max(wobbleLength, wobbleTimer);
     }
     
+    public void Knockback(Vector2 from, float strength)
+    {
+        rb.AddForce(((Vector2)transform.position - from).normalized * strength);
+    }
         
     
 
