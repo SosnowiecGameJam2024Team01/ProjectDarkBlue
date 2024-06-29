@@ -100,7 +100,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupType: 1
   lifeTime: 20
+  thrownByController: {fileID: 0}
   speed: 0
+  reset: 0
+  respawn: 5
+  on: 0
 --- !u!60 &6159014863632728543
 PolygonCollider2D:
   m_ObjectHideFlags: 0

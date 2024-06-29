@@ -18,37 +18,59 @@ public class Debris : MonoBehaviour
 	}
 	public PickupType pickupType = PickupType.Ability;
     [SerializeField]float lifeTime = 3;
+	float lifetimeRemain;
 	public MovementController thrownByController = null;
 
 	[SerializeField] float speed;
+	[SerializeField] bool reset;
 	[SerializeField] float respawn;
+	[SerializeField] bool on;
+
+	Vector2 starting;
 
 	private void Start()
 	{
-		transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+		starting = transform.position;
+		lifetimeRemain = lifeTime;
+		on = true;
+		//transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
 	}
 
 	private void Update()
 	{
-		CheckIfToDestroyed();
+		if(reset) CheckIfToDestroyed();
 		transform.position = Vector2.MoveTowards(transform.position, transform.position + transform.up, speed * Time.deltaTime);
 	}
 
 	void CheckIfToDestroyed()
     {
-		lifeTime -= Time.deltaTime;
-		if (lifeTime > 0 || PlayerController.Instance.InVision(transform.position)) return;
+		lifetimeRemain -= Time.deltaTime;
+		if (lifetimeRemain > 0 || PlayerController.Instance.InVision(transform.position)) return;
         else
         {
-            Destroy(gameObject);
-			EventHandler.eventCount--;
+			transform.position = starting;
+			lifetimeRemain = lifeTime;
+			//EventHandler.eventCount--;
 		}
-		
 		
 	}
 
+	IEnumerator Return()
+	{
+		yield return new WaitForSeconds(respawn);
+
+		while(PlayerController.Instance.InVision(transform.position))
+		{
+			yield return new WaitForSeconds(0.5f);
+		}
+		transform.GetComponent<SpriteRenderer>().enabled = true; 
+		on = true;
+	}
+
+
     void OnTriggerEnter2D(Collider2D collision)
     {
+		if (!on) return;
 		MovementController controller;
 
         if (collision.GetComponent<MovementController>() == null) {
@@ -82,6 +104,9 @@ public class Debris : MonoBehaviour
 				CanvasEffects.Instance.ShowBird(collision.gameObject.GetComponent<Player>().type);
 				break;
         }
-        Destroy(gameObject);
-    }
+		on = false;
+		transform.GetComponent<SpriteRenderer>().enabled = false;
+		StartCoroutine(Return());
+
+	}
 }
