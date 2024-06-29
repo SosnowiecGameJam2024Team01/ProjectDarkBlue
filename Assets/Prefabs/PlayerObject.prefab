@@ -81,6 +81,10 @@ MonoBehaviour:
   acceleration: 20
   boostMultiplier: 1.3
   steering: 15
+  abilityBar: 0
+  maxAbilityBar: 9
+  isPaused: 0
+  isFlying: 0
 --- !u!114 &4343712141351218938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,10 +113,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: {fileID: 0}
   startPoint: {fileID: 0}
-  pickUpsUI:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &2598828379097133922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  sightRange: 5
+  sightRange: 15
 --- !u!70 &1988466924059745392
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
