@@ -13,7 +13,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Button[] buttons;
     public void PlayGame()
     {
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadSceneAsync("ChariotScene");
     }
     private void InteractableInButtons(bool mode)
     {
