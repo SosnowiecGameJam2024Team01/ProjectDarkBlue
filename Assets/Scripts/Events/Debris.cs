@@ -44,7 +44,7 @@ public class Debris : MonoBehaviour
         switch (pickupType)
         {
             case PickupType.Ability:
-				controller.abilityBar=Mathf.Max(controller.abilityBar+1, controller.maxAbilityBar);
+				controller.abilityBar=Mathf.Min(controller.abilityBar+1, controller.maxAbilityBar);
 				break;
             case PickupType.Wobble:
                 controller.EnableWobble(10);
