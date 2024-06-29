@@ -8,7 +8,8 @@ public class Persistant : MonoBehaviour
     {
         Slow,
         Speed,
-        Wobble
+        Wobble,
+        Ice
     }
 
     public PersistantType type; 
