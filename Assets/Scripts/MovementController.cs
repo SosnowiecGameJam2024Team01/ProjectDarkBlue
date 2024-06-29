@@ -9,7 +9,8 @@ public class MovementController : MonoBehaviour
     public float acceleration = 15f;       // Acceleration force applied to the car
     public float boostMultiplier = 1.3f;
     public float steering = 2f;            // How much the car can steer
-
+    public int abilityBar = 0;
+    public int maxAbilityBar = 9;
 
     private Rigidbody2D rb;
     private float currentSpeed = 0f;
@@ -118,6 +119,22 @@ public class MovementController : MonoBehaviour
         rb.AddForce(((Vector2)transform.position - from).normalized * strength);
     }
         
-    
+    private void UseAbility()
+    {
+        int abilityLevel = (abilityBar * 3)  / maxAbilityBar;
+        abilityBar -= abilityLevel * maxAbilityBar / 3;
+        switch (abilityLevel)
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+
+        }
+        
 
 }

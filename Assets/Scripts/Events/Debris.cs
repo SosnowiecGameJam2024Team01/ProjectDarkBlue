@@ -9,12 +9,12 @@ public class Debris : MonoBehaviour
 {
 	public enum PickupType
 	{
-		Boost,
+		Ability,
 		Wobble,
 		Knockback,
 		Bird
 	}
-	public PickupType pickupType = PickupType.Boost;
+	public PickupType pickupType = PickupType.Ability;
     [SerializeField]float lifeTime = 3;
 	
 
@@ -31,7 +31,7 @@ public class Debris : MonoBehaviour
         {
             Destroy(gameObject);
         }
-		ParticleSystem sa;
+		
 		
 	}
 
@@ -39,8 +39,8 @@ public class Debris : MonoBehaviour
     {
         switch (pickupType)
         {
-            case PickupType.Boost:
-				collision.gameObject.GetComponent<MovementController>().EnableBoost(10);
+            case PickupType.Ability:
+				collision.gameObject.GetComponent<MovementController>().abilityBar++;
 				break;
             case PickupType.Wobble:
 				collision.gameObject.GetComponent<MovementController>().EnableWobble(10);
