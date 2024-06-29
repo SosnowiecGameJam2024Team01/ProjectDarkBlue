@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
 	public static Player dionysus { get; private set; }
 	public static Player venus { get; private set; }
 
+	public GameObject collisonParticle;
+
 	private void Awake()
 	{
 		if (Instance == null) Instance = this;
