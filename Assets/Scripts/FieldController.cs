@@ -2,18 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR;
 
 public class FieldController : MonoBehaviour
 {
     public static FieldController Instance;
-    [Header("Field Objects")]
+    [Header("Results")]
     [SerializeField] private GameObject[] drivers;
     [SerializeField] private int numOfLaps;
-    private (GameObject driverObj, int numOfLap, int numOfPonts, float time)[] driver;
+    private (GameObject driverObj, string name, int numOfLap, int numOfPonts, float time)[] driver;
     private int places;
+    private int winners = 0;
     private string placesStats;
+    [SerializeField] private string[] namesOfDrivers;
+    [SerializeField] private CanvasGroup results;
+    [SerializeField] private TextMeshProUGUI resultsTxt;
 
     [Header("Timer")]
     [SerializeField] private float accuracyOfTimer;
@@ -24,7 +31,6 @@ public class FieldController : MonoBehaviour
 	[SerializeField] Vector2 middlePoint;
 	[SerializeField] Vector2 topRight;
 	[SerializeField] Vector2 bottomLeft;
-
 
 	private void Awake()
 	{
@@ -37,9 +43,9 @@ public class FieldController : MonoBehaviour
         places = 0;
         timer = 0f;
         StartCoroutine(timerCoroutine = TimerCoroutine());
-        driver = new (GameObject driverObj, int numOfLap, int numOfPonts, float time)[drivers.Length];
+        driver = new (GameObject driverObj, string name, int numOfLap, int numOfPonts, float time)[drivers.Length];
         for(int i = 0; i < driver.Length; ++i) 
-            driver[i] = (drivers[i], 0, 0, timer);
+            driver[i] = (drivers[i], namesOfDrivers[i], 0, 0, timer);
     }
 
     public void SetStats(GameObject currentDriver, bool isStartPoint)
@@ -51,7 +57,12 @@ public class FieldController : MonoBehaviour
                 Debug.Log(isStartPoint);
                 if (!isStartPoint) Debug.Log($"{++driver[i].numOfPonts}");
                 else if (driver[i].numOfLap == numOfLaps)
-                    Debug.Log($"{currentDriver.name} is {++places} place! \nTime {timer}");
+                {
+                    placesStats += $"{driver[i].name} is {++places} place! Time {timer}\n";
+                    currentDriver.GetComponent<MovementController>().isPaused = true;
+                    if(++winners == driver.Length)
+                        ShowResults();
+                }
                 else
                 {
                     ResetPoints(i);
@@ -63,18 +74,15 @@ public class FieldController : MonoBehaviour
     }
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Escape) && winners == driver.Length) 
+            SceneManager.LoadSceneAsync("ChariotScene");
     }
     private void ResetPoints(int driverNum) => driver[driverNum].numOfPonts = 0;
     private void SetPlaces()
     {
-        placesStats = "";
-        (GameObject driverObj, int numOfLap, int numOfPoints, float time)[] statsOfDrivers = driver;
+        (GameObject driverObj, string name, int numOfLap, int numOfPoints, float time)[] statsOfDrivers = driver;
         Array.Sort(statsOfDrivers, (x, y) => y.numOfPoints.CompareTo(x.numOfPoints));
         Array.Sort(statsOfDrivers, (x, y) => y.numOfLap.CompareTo(x.numOfLap));
-        for (int i = 0; i < statsOfDrivers.Length; ++i)
-            placesStats += $"{i + 1} Place: {statsOfDrivers[i].driverObj.name}\n";
-        Debug.Log(placesStats);
     }
 
     private IEnumerator TimerCoroutine()
@@ -82,6 +90,11 @@ public class FieldController : MonoBehaviour
         yield return new WaitForSeconds(accuracyOfTimer);
         timer += accuracyOfTimer;
         StartCoroutine(timerCoroutine = TimerCoroutine());
+    }
+    private void ShowResults()
+    {
+        results.gameObject.SetActive(true);
+        resultsTxt.text = placesStats;
     }
 
     public Vector2 GetTopRight() { return topRight; }
