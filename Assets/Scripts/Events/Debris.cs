@@ -12,17 +12,26 @@ public class Debris : MonoBehaviour
 		Ability,
 		Wobble,
 		Knockback,
-		Bird
+		Bird,
+		Moving,
+		None,
 	}
 	public PickupType pickupType = PickupType.Ability;
     [SerializeField]float lifeTime = 3;
 	public MovementController thrownByController = null;
 
+	[SerializeField] float speed;
+	[SerializeField] float respawn;
 
+	private void Start()
+	{
+		transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+	}
 
-    private void Update()
+	private void Update()
 	{
 		CheckIfToDestroyed();
+		transform.position = Vector2.MoveTowards(transform.position, transform.position + transform.up, speed * Time.deltaTime);
 	}
 
 	void CheckIfToDestroyed()
@@ -32,7 +41,8 @@ public class Debris : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
+			EventHandler.eventCount--;
+		}
 		
 		
 	}

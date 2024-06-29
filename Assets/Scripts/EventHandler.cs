@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -14,17 +15,17 @@ public class EventHandler : MonoBehaviour
 {
 	public static EventHandler Instance;
 
+	public static int eventCount = 0;
+
 	[SerializeField] Vector2 eventTriggerTime;
 
 	[SerializeField] List<EventBase> dionysusEvents;
-	[SerializeField] List<EventBase> venusEvents;
 
 	[SerializeField] EventZone zone;
 	[SerializeField] Collider2D trueBound;
 	[SerializeField] Collider2D coliderBound;
 
-	float nextDionysusEvent;
-	float nextVenusEvent;
+	[SerializeField] int minEventCount = 40;
 
 	void Awake()
 	{
@@ -40,18 +41,11 @@ public class EventHandler : MonoBehaviour
 
 	void TriggerEvent()
 	{
-		if(nextDionysusEvent < Time.time)
+		if (eventCount < minEventCount)
 		{
 			EventBase next = dionysusEvents[Random.Range(0, dionysusEvents.Count)];
 			next.Trigger(PlayerType.Dionysus, FindPlaceToSpawn());
-			nextDionysusEvent = Time.time + Random.Range(eventTriggerTime.x, eventTriggerTime.y); 
-		}
-
-		if (nextVenusEvent < Time.time)
-		{
-			EventBase next = venusEvents[Random.Range(0, venusEvents.Count)];
-			next.Trigger(PlayerType.Venus, FindPlaceToSpawn());
-			nextVenusEvent = Time.time + Random.Range(eventTriggerTime.x, eventTriggerTime.y);
+			eventCount++;
 		}
 	}
 

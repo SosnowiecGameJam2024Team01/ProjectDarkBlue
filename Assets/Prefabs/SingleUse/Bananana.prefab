@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5161512209619561549}
   - component: {fileID: 8228386890821986981}
   - component: {fileID: 7889788768982648158}
-  - component: {fileID: -4146864479879552714}
+  - component: {fileID: 6159014863632728543}
   m_Layer: 0
   m_Name: Bananana
   m_TagString: Untagged
@@ -100,8 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupType: 1
   lifeTime: 20
---- !u!61 &-4146864479879552714
-BoxCollider2D:
+  speed: 0
+--- !u!60 &6159014863632728543
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -142,6 +143,22 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.29999998, y: 0.08}
+      - {x: 0.21, y: 0.13}
+      - {x: 0.01, y: 0.22999999}
+      - {x: -0.049999997, y: 0.24}
+      - {x: -0.14, y: 0.24}
+      - {x: -0.16, y: 0.22999999}
+      - {x: -0.29999998, y: -0.08}
+      - {x: -0.29999998, y: -0.17}
+      - {x: -0.28, y: -0.21}
+      - {x: -0.04, y: -0.14999999}
+      - {x: 0, y: -0.22999999}
+      - {x: 0.049999997, y: -0.24}
+      - {x: 0.17999999, y: -0.24}
+      - {x: 0.22, y: -0.19999999}
+      - {x: 0.19999999, y: -0.04}
+      - {x: 0.29999998, y: 0.01}
+  m_UseDelaunayMesh: 0
