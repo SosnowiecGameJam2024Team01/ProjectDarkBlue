@@ -482,7 +482,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 16c157814946663449fb20849af04ff5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d1af06e82d1f0334bac94eedff4a9b34, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -512,6 +512,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7593a6b0c4805741a0a7b397535957f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dionysus: {fileID: 1929364639}
+  venus: {fileID: 1223621469}
+  map: {fileID: 237081318}
 --- !u!1 &421062090
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,7 +782,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 13.25, y: 7.9}
+  m_Size: {x: 106.03259, y: 53.999996}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

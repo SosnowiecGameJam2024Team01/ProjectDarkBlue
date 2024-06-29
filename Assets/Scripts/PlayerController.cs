@@ -49,8 +49,10 @@ public class PlayerController : MonoBehaviour
 		float heigth = Mathf.Abs(topRight.y) + Mathf.Abs(botLeft.y);
 		float width = Mathf.Abs(topRight.x) + Mathf.Abs(botLeft.x);
 
+		float x = (postion.x + width / 2)/width;
+		float y = (postion.y + heigth / 2)/heigth;
 
-		return postion;
+		return new Vector2(x, y);
 	}
 
 	public Vector2 GetPointInFrontInView(PlayerType type)

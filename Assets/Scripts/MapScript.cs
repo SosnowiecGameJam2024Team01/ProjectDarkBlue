@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class MapScript : MonoBehaviour
 {
-	[SerializeField] Transform dionysus;
-	[SerializeField] Transform venus;
-
+	[SerializeField] RectTransform dionysus;
+	[SerializeField] RectTransform venus;
+	[SerializeField] RectTransform map;
 
 	private void Update()
 	{
+		Vector2 mapSize = map.sizeDelta;
 		
+		dionysus.anchoredPosition = PlayerController.Instance.GetRelativePosition(PlayerType.Dionysus) * mapSize - mapSize/2;
+		venus.anchoredPosition = PlayerController.Instance.GetRelativePosition(PlayerType.Venus) * mapSize - mapSize / 2;
 	}
 }
