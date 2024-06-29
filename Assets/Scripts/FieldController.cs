@@ -21,6 +21,7 @@ public class FieldController : MonoBehaviour
     [SerializeField] private string[] namesOfDrivers;
     [SerializeField] private CanvasGroup results;
     [SerializeField] private TextMeshProUGUI resultsTxt;
+    [SerializeField] private TextMeshProUGUI[] currentLapsTxt;
 
     [Header("Timer")]
     [SerializeField] private float accuracyOfTimer;
@@ -44,8 +45,11 @@ public class FieldController : MonoBehaviour
         timer = 0f;
         StartCoroutine(timerCoroutine = TimerCoroutine());
         driver = new (GameObject driverObj, string name, int numOfLap, int numOfPonts, float time)[drivers.Length];
-        for(int i = 0; i < driver.Length; ++i) 
-            driver[i] = (drivers[i], namesOfDrivers[i], 0, 0, timer);
+        for (int i = 0; i < driver.Length; ++i)
+        {
+            driver[i] = (drivers[i], namesOfDrivers[i], 1, 0, timer);
+            currentLapsTxt[i].text = $"Lap: {driver[i].numOfLap}/{numOfLaps}";
+        }
     }
 
     public void SetStats(GameObject currentDriver, bool isStartPoint)
@@ -55,23 +59,36 @@ public class FieldController : MonoBehaviour
             if (driver[i].driverObj == currentDriver)
             {
                 Debug.Log(isStartPoint);
-                if (!isStartPoint) Debug.Log($"{++driver[i].numOfPonts}");
+                if (!isStartPoint)
+                {
+                    Debug.Log($"{++driver[i].numOfPonts}");
+                }
                 else if (driver[i].numOfLap == numOfLaps)
                 {
                     placesStats += $"{driver[i].name} is {++places} place! Time {timer}\n";
                     currentDriver.GetComponent<MovementController>().isPaused = true;
-                    if(++winners == driver.Length)
+                    if (++winners == driver.Length)
                         ShowResults();
                 }
                 else
                 {
                     ResetPoints(i);
-                    Debug.Log($"Lap {++driver[i].numOfLap}");
+                    driver[i].numOfLap++;
                 }
             }
         }
+        UpdateCurrentLapsText();
         SetPlaces();
     }
+
+    private void UpdateCurrentLapsText()
+    {
+        for (int i = 0; i < driver.Length; ++i)
+        {
+            currentLapsTxt[i].text = $"Lap: {driver[i].numOfLap}/{numOfLaps}";
+        }
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && winners == driver.Length) 
