@@ -13,26 +13,14 @@ public class Persistant : MonoBehaviour
     }
 
     public PersistantType type;
-	[SerializeField] float lifeTime = 3;
+
 	private void Start()
 	{
-		transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+		//transform.rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
 	}
 	private void Update()
 	{
-		CheckIfToDestroyed();
 	}
 
-	void CheckIfToDestroyed()
-	{
-		lifeTime -= Time.deltaTime;
-		if (lifeTime > 0 || PlayerController.Instance.InVision(transform.position)) return;
-		else
-		{
-			Destroy(gameObject);
-			EventHandler.eventCount--;
-		}
 
-
-	}
 }
