@@ -149,7 +149,6 @@ public class MovementController : MonoBehaviour
                 break;
 
         }
-
     }
     public void Throw()
     {
