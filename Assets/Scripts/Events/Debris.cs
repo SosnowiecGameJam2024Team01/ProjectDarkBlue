@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Debris : MonoBehaviour
 {
+<<<<<<< Updated upstream
     float lifeTime = 3;
+=======
+	public string pickupType = "None";
+    [SerializeField]float lifeTime = 3;
+
+>>>>>>> Stashed changes
 	
     private void Update()
 	{
@@ -20,4 +26,19 @@ public class Debris : MonoBehaviour
             Destroy(gameObject);
         }
 	}
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(pickupType == "Boost")
+        {
+            collision.gameObject.GetComponent<MovementController>().EnableBoost(10);
+          }
+
+        if (pickupType == "Wobble")
+        {
+            collision.gameObject.GetComponent<MovementController>().EnableWobble(10);
+        }
+
+        Destroy(gameObject);
+    }
 }

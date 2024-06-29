@@ -16,6 +16,7 @@ public class MovementController : MonoBehaviour
     private float inputVertical;
     private float inputHorizontal;
     private float boostTimer = 0f;
+    private float wobbleTimer = 0f;
 
     void Start()
     {
@@ -36,15 +37,23 @@ public class MovementController : MonoBehaviour
             inputVertical = Input.GetAxis("Vertical2");
             inputHorizontal = Input.GetAxis("Horizontal2");
         }
-        
+
+        //wobble and boost testing REMOVE
+        if (Input.GetKeyDown(KeyCode.E)) { EnableWobble( 10); }
+        if (Input.GetKeyDown(KeyCode.Q)) { EnableBoost( 10); }
     }
 
     void FixedUpdate()
     {
-       
 
+        Vector2 driveDir = transform.up;
+        if (wobbleTimer > 0f)
+        {
+            driveDir = transform.up + transform.right*Mathf.Sin(Time.time*8)/2;
+            wobbleTimer -= Time.fixedDeltaTime;
+        }
         // Apply forward force based on player input
-        Vector2 forward = transform.up * inputVertical * acceleration;
+        Vector2 forward = driveDir.normalized * inputVertical * acceleration;
 
 
 
@@ -72,4 +81,12 @@ public class MovementController : MonoBehaviour
     {
         boostTimer = Mathf.Max(boostLength, boostTimer);
     }
+    public void EnableWobble(float wobbleLength)
+    {
+        wobbleTimer = Mathf.Max(wobbleLength, wobbleTimer);
+    }
+    
+        
+    
+
 }
