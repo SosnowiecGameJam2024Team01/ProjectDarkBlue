@@ -167,7 +167,7 @@ public class MovementController : MonoBehaviour
     }
     public void Throw()
     {
-        GameObject thrownObj = Instantiate(throwPrefab, transform.position, transform.rotation);
+        GameObject thrownObj = Instantiate(throwPrefab, throwPos.position, throwPos.rotation);
         thrownObj.GetComponent<Debris>().thrownByController = this;
     }
 

@@ -5876,6 +5876,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Venus
       objectReference: {fileID: 0}
+    - target: {fileID: 4733195827497195424, guid: 27849d779d878934ba7faf160479d808, type: 3}
+      propertyPath: throwPos
+      value: 
+      objectReference: {fileID: 4457441684287020806}
     - target: {fileID: 5552115654146667539, guid: 27849d779d878934ba7faf160479d808, type: 3}
       propertyPath: points
       value: 
@@ -5929,6 +5933,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27849d779d878934ba7faf160479d808, type: 3}
+--- !u!4 &4457441684287020806 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6024884954755540124, guid: 27849d779d878934ba7faf160479d808, type: 3}
+  m_PrefabInstance: {fileID: 4457441684287020805}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5063488593887383623 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4733195827497195424, guid: 27849d779d878934ba7faf160479d808, type: 3}
