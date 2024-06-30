@@ -14,7 +14,7 @@ public class Debris : MonoBehaviour
 		Knockback,
 		Bird,
 		Moving,
-		None,
+		None
 	}
 	public PickupType pickupType = PickupType.Ability;
     [SerializeField]float lifeTime = 3;
@@ -92,7 +92,7 @@ public class Debris : MonoBehaviour
         switch (pickupType)
         {
             case PickupType.Ability:
-				controller.abilityBar=Mathf.Min(controller.abilityBar+1, controller.maxAbilityBar);
+				controller.abilityBar = Mathf.Min(controller.abilityBar+1, controller.maxAbilityBar);
 				break;
             case PickupType.Wobble:
                 controller.EnableWobble(10);
