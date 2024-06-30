@@ -101,7 +101,7 @@ public class Debris : MonoBehaviour
         {
             case PickupType.Cabbages:
 				controller.EnableWobble(3);
-				SoundController.Instance.PlaySound(SoundType.Cabbages);
+				//SoundController.Instance.PlaySound(SoundType.Cabbages);
 				break;
             case PickupType.Wobble:
                 controller.EnableWobble(3);
@@ -115,7 +115,7 @@ public class Debris : MonoBehaviour
             case PickupType.AbilityVenus:
                 if (controller.GetComponent<Player>().type == PlayerType.Venus)
 				{
-					SoundController.Instance.PlaySound(SoundType.ItemPickup);
+					//SoundController.Instance.PlaySound(SoundType.ItemPickup);
 					controller.abilityBar = Mathf.Min(controller.abilityBar + 1, controller.maxAbilityBar);
 				}
 				else return;
@@ -123,7 +123,7 @@ public class Debris : MonoBehaviour
             case PickupType.AbilityDionysus:
 				if (controller.GetComponent<Player>().type == PlayerType.Dionysus)
 				{
-					SoundController.Instance.PlaySound(SoundType.ItemPickup);
+					//SoundController.Instance.PlaySound(SoundType.ItemPickup);
 					controller.abilityBar = Mathf.Min(controller.abilityBar + 1, controller.maxAbilityBar);
 				}
 				else return;
