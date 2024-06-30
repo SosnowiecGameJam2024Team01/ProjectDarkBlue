@@ -8,6 +8,11 @@ public class CanvasEffects : MonoBehaviour
 
 	[SerializeField] Animator canvasAnim;
 
+	[SerializeField] float birdCD;
+
+	float birbACD = 0;
+	float birbBCD = 0;
+
 	private void Awake()
 	{
 		if (Instance == null) Instance = this;
@@ -20,10 +25,14 @@ public class CanvasEffects : MonoBehaviour
 		switch (type)
 		{
 			case PlayerType.Dionysus:
+				if (birbACD > Time.time) return;
 				canvasAnim.SetTrigger("BirdA");
+				birbACD = Time.time + birdCD;
 				break;
 			case PlayerType.Venus:
-				canvasAnim.SetTrigger("BirdB"); 
+				if (birbBCD > Time.time) return;
+				canvasAnim.SetTrigger("BirdB");
+				birbBCD = Time.time + birdCD;
 				break;
 		}
 	}
