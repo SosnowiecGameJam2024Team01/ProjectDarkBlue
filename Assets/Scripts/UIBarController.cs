@@ -7,8 +7,14 @@ public class UIBarController : MonoBehaviour
 {
     public MovementController controller;
 
-    // Start is called before the first frame update
-    void Start()
+
+	[SerializeField] List<Sprite> normal;
+	[SerializeField] List<Sprite> highlight;
+	[SerializeField] List<Image> images;
+
+
+	// Start is called before the first frame update
+	void Start()
     {
         
     }
@@ -17,5 +23,12 @@ public class UIBarController : MonoBehaviour
     void Update()
     {
         GetComponent<Image>().fillAmount = controller.abilityBar / (float)controller.maxAbilityBar;
+        int active = Mathf.FloorToInt((controller.abilityBar / (float)controller.maxAbilityBar + Mathf.Epsilon) * 3) - 1;
+
+		for (int i = 0; i < images.Count; i++)
+        {
+            if(active == i) images[i].sprite = highlight[i];
+            else images[i].sprite = normal[i];
+		}
     }
 }

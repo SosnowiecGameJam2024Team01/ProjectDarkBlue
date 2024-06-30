@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -19,7 +18,7 @@ public class MainMenuController : MonoBehaviour
 
 	public void PlayGame()
     {
-        SceneManager.LoadSceneAsync("ChariotScene");
+        SceneManager.LoadSceneAsync("Tutorial");
         MusicController.Instance.ChangeScene(Scene.Game);
     }
     private void InteractableInButtons(bool mode)
