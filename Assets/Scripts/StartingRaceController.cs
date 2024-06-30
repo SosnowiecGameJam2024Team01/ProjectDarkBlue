@@ -22,15 +22,18 @@ public class StartingRaceController : MonoBehaviour
 
     private IEnumerator ReverseCounting()
     {
-        while(timer >= 0)
+        while(timer >= 1)
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             timerTxt.text = timer.ToString();
             timer--;
         }
-        timerTxt.text = "GO!";
+		yield return new WaitForSeconds(0.5f);
+		gong.Play();
+		yield return new WaitForSeconds(0.5f);
+		timerTxt.text = "GO!";
         ChangePause(false);
-        gong.Play();
+        
 		yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }

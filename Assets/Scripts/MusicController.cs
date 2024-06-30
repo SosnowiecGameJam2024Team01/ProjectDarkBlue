@@ -29,6 +29,7 @@ public class MusicController : MonoBehaviour
 	[SerializeField] AudioSource raceLast;
 	[SerializeField] AudioSource raceLastLoop;
 
+	[SerializeField] float maxVolume;
 	AudioSource current;
 	AudioSource next;
 
@@ -59,7 +60,7 @@ public class MusicController : MonoBehaviour
 		if (current == null)
 		{
 			current = next;
-			current.volume = 1;
+			current.volume = maxVolume;
 			change = false;
 		}
 		else
@@ -68,8 +69,8 @@ public class MusicController : MonoBehaviour
 			if (Time.time < start + blendTime)
 			{
 				float t = (Time.time - start) / blendTime;
-				current.volume = Mathf.Lerp(1, 0, t);
-				next.volume = Mathf.Lerp(0, 1, t);
+				current.volume = Mathf.Lerp(maxVolume, 0, t);
+				next.volume = Mathf.Lerp(0, maxVolume, t);
 			}
 			else
 			{

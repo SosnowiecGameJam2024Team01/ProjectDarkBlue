@@ -70,6 +70,7 @@ MonoBehaviour:
   raceLoop: {fileID: 6572970398892394650}
   raceLast: {fileID: 1820374816332762826}
   raceLastLoop: {fileID: 7759175740880860562}
+  maxVolume: 0.6
   change: 0
   blendTime: 3
 --- !u!82 &6268426206376854769
