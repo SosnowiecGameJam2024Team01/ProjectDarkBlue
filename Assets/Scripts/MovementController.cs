@@ -19,6 +19,7 @@ public class MovementController : MonoBehaviour
     public Transform throwPos;
 
     private Rigidbody2D rb;
+    [SerializeField] Animator animator;
     private float currentSpeed = 0f;
     private float inputVertical;
     private float inputHorizontal;
@@ -54,7 +55,7 @@ public class MovementController : MonoBehaviour
         }
 
 
-        
+        animator.SetFloat("Speed", rb.velocity.magnitude);
         if ((Input.GetKeyDown(KeyCode.RightShift)&&arrows)||(Input.GetKeyDown(KeyCode.LeftShift) && !arrows)) { UseAbility(); }
         
     }
