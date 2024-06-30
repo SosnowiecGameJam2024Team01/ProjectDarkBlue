@@ -51,8 +51,8 @@ public class MovementController : MonoBehaviour
             inputHorizontal = Input.GetAxis("Horizontal2");
         }
 
-        //wobble and boost testing REMOVE
-        if (Input.GetKeyDown(KeyCode.E)) { UseAbility(); }
+        
+        if ((Input.GetKeyDown(KeyCode.RightShift)&&arrows)||(Input.GetKeyDown(KeyCode.LeftShift) && !arrows)) { UseAbility(); }
         
     }
 
