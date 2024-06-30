@@ -66,7 +66,7 @@ public class FieldController : MonoBehaviour
                 }
                 else if (driver[i].numOfLap == numOfLaps)
                 {
-                    placesStats += $"{driver[i].name} is {++places} place! Time {timer}\n";
+                    placesStats += $"{++places}. {driver[i].name} Time {Math.Round(timer, 2)}\n";
                     if(places == 1) PlayerPrefs.SetString("TheWinner", driver[i].name);
                     currentDriver.GetComponent<MovementController>().isPaused = true;
                     if (++winners == driver.Length)
