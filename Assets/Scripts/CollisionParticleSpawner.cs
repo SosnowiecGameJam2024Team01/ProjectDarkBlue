@@ -5,6 +5,7 @@ using UnityEngine;
 public class CollisionParticleSpawner : MonoBehaviour
 {
     private GameObject particleObj;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,9 @@ public class CollisionParticleSpawner : MonoBehaviour
     {
         foreach (var con in collision.contacts)
         {
-            Instantiate(particleObj, con.point, Quaternion.identity);
+            GameObject particle = Instantiate(particleObj, con.point, Quaternion.identity);
+            particle.GetComponent<AudioSource>().clip = particle.GetComponent<AudioClipsLib>().clips[Random.Range(0,3)];
+
         }
         
     }
