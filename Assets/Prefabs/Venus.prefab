@@ -9852,7 +9852,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 1.2}
-  m_ConnectedAnchor: {x: -0.0000019141435, y: -0.09000015}
+  m_ConnectedAnchor: {x: -0.0000019141435, y: -0.089999914}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -9960,7 +9960,7 @@ AudioSource:
   m_GameObject: {fileID: 3501214241789154485}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 9dd7ce7cbef76304aa8bdf6770b50693, type: 2}
   m_audioClip: {fileID: 8300000, guid: fcf0cd5d34526f540b07972fbe6fee1d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1

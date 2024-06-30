@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-enum Music
+public enum Music
 {
 	MainMenu,
 	MainMenuLoop,
@@ -111,7 +111,7 @@ public class MusicController : MonoBehaviour
 		}
 	}
 
-	void SwitchTracks(Music music)
+	public void SwitchTracks(Music music)
 	{
 		switch (music)
 		{

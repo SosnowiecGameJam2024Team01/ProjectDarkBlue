@@ -105,6 +105,7 @@ MonoBehaviour:
   reset: 0
   respawn: 0
   on: 0
+  destroyed: {fileID: 0}
 --- !u!60 &5261861514962730754
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -114,7 +115,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 6530135505003161026}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d8637fdeb759a204cb859af4c11fb0d4, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

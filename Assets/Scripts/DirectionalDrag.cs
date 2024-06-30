@@ -9,7 +9,7 @@ public class DirectionalDrag : MonoBehaviour
     [Header("Drag Settings")]
     public float dragForward = 0.5f;     // Drag in the forward direction (local y-axis)
     public float dragSideways = 2.0f;    // Drag in the sideways direction (local x-axis)
-    private float dragGrass = 5f;
+    private float dragGrass = 1.25f;
 
 
 

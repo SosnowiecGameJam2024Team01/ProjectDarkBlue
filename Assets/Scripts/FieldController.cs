@@ -15,6 +15,7 @@ public class FieldController : MonoBehaviour
 
     [SerializeField] private GameObject[] drivers;
     [SerializeField] private int numOfLaps;
+    bool lastLap;
     private (GameObject driverObj, string name, int numOfLap, int numOfPonts, float time)[] driver;
     private int places;
     private int winners = 0;
@@ -44,7 +45,9 @@ public class FieldController : MonoBehaviour
     {
         places = 0;
         timer = 0f;
-        StartCoroutine(timerCoroutine = TimerCoroutine());
+        lastLap = false;
+
+		StartCoroutine(timerCoroutine = TimerCoroutine());
         driver = new (GameObject driverObj, string name, int numOfLap, int numOfPonts, float time)[drivers.Length];
         for (int i = 0; i < driver.Length; ++i)
         {
@@ -76,6 +79,12 @@ public class FieldController : MonoBehaviour
                 {
                     ResetPoints(i);
                     driver[i].numOfLap++;
+
+                    if (driver[i].numOfLap == numOfLaps && !lastLap)
+                    {
+                        MusicController.Instance.SwitchTracks(Music.raceLast);
+                        lastLap = true;
+					}
                 }
             }
         }

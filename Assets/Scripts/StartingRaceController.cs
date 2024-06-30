@@ -7,6 +7,7 @@ public class StartingRaceController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timerTxt;
     [SerializeField] private MovementController[] players;
+    [SerializeField] AudioSource gong;
     private int timer = 3;
     void Start()
     {
@@ -29,7 +30,8 @@ public class StartingRaceController : MonoBehaviour
         }
         timerTxt.text = "GO!";
         ChangePause(false);
-        yield return new WaitForSeconds(1);
+        gong.Play();
+		yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
 }
