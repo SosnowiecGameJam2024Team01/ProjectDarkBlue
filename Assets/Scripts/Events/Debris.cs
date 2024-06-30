@@ -97,7 +97,6 @@ public class Debris : MonoBehaviour
         {
             case PickupType.Cabbages:
 				controller.EnableWobble(3);
-				destroyed.SetActive(true);
 				break;
             case PickupType.Wobble:
                 controller.EnableWobble(10);
@@ -119,6 +118,7 @@ public class Debris : MonoBehaviour
 				else return;
 				break;
         }
+		if(destroyed!=null)destroyed.SetActive(true);
 		on = false;
 		transform.GetComponent<SpriteRenderer>().enabled = false;
 		StartCoroutine(Return());
