@@ -44,15 +44,14 @@ public class MovementController : MonoBehaviour
         {
             inputVertical = Input.GetAxis("Vertical");
             inputHorizontal = Input.GetAxis("Horizontal");
+            if (Input.GetKeyDown(KeyCode.Keypad0)) { UseAbility(); }
         }
         else
         {
             inputVertical = Input.GetAxis("Vertical2");
             inputHorizontal = Input.GetAxis("Horizontal2");
+            if (Input.GetKeyDown(KeyCode.Space)) { UseAbility(); }
         }
-
-        //wobble and boost testing REMOVE
-        if (Input.GetKeyDown(KeyCode.E)) { UseAbility(); }
         
     }
 
