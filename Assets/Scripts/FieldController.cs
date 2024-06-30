@@ -12,6 +12,7 @@ public class FieldController : MonoBehaviour
 {
     public static FieldController Instance;
     [Header("Results")]
+
     [SerializeField] private GameObject[] drivers;
     [SerializeField] private int numOfLaps;
     private (GameObject driverObj, string name, int numOfLap, int numOfPonts, float time)[] driver;
@@ -66,6 +67,7 @@ public class FieldController : MonoBehaviour
                 else if (driver[i].numOfLap == numOfLaps)
                 {
                     placesStats += $"{driver[i].name} is {++places} place! Time {timer}\n";
+                    if(places == 1) PlayerPrefs.SetString("TheWinner", driver[i].name);
                     currentDriver.GetComponent<MovementController>().isPaused = true;
                     if (++winners == driver.Length)
                         ShowResults();
@@ -78,7 +80,7 @@ public class FieldController : MonoBehaviour
             }
         }
         UpdateCurrentLapsText();
-        SetPlaces();
+        //SetPlaces();
     }
 
     private void UpdateCurrentLapsText()
@@ -95,12 +97,12 @@ public class FieldController : MonoBehaviour
             SceneManager.LoadSceneAsync("ChariotScene");
     }
     private void ResetPoints(int driverNum) => driver[driverNum].numOfPonts = 0;
-    private void SetPlaces()
-    {
-        (GameObject driverObj, string name, int numOfLap, int numOfPoints, float time)[] statsOfDrivers = driver;
-        Array.Sort(statsOfDrivers, (x, y) => y.numOfPoints.CompareTo(x.numOfPoints));
-        Array.Sort(statsOfDrivers, (x, y) => y.numOfLap.CompareTo(x.numOfLap));
-    }
+    //private void SetPlaces()
+    //{
+    //    (GameObject driverObj, string name, int numOfLap, int numOfPoints, float time)[] statsOfDrivers = driver;
+    //    Array.Sort(statsOfDrivers, (x, y) => y.numOfPoints.CompareTo(x.numOfPoints));
+    //    Array.Sort(statsOfDrivers, (x, y) => y.numOfLap.CompareTo(x.numOfLap));
+    //}
 
     private IEnumerator TimerCoroutine()
     {
@@ -110,8 +112,9 @@ public class FieldController : MonoBehaviour
     }
     private void ShowResults()
     {
-        results.gameObject.SetActive(true);
-        resultsTxt.text = placesStats;
+        PlayerPrefs.SetString("WinnersInfo", placesStats);
+        SceneManager.LoadSceneAsync("WonPlayersStatsScene");
+        //results.gameObject.SetActive(true);
     }
 
     public Vector2 GetTopRight() { return topRight; }

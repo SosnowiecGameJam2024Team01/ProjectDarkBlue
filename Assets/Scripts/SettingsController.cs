@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class SettingsController : MonoBehaviour
 {
-    //public AudioMixer audioMixer;
+    public AudioMixer audioMixer;
     public TMPro.TMP_Dropdown resolutionDropdown;
-    public TMPro.TMP_Dropdown qualityDropdown;
     public Slider volumeSlider;
     public Toggle fullScreenToggle;
     public float currentVolume;
@@ -22,7 +21,7 @@ public class SettingsController : MonoBehaviour
 
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + "x" + resolutions[i].height + " " + resolutions[i].refreshRateRatio + "Hz";
+            string option = resolutions[i].width + "x" + resolutions[i].height + " ";
             options.Add(option);
             if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
                 currentResolutionIndex = i;
@@ -34,11 +33,11 @@ public class SettingsController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    //public void SetVolume()
-    //{
-    //    audioMixer.SetFloat("Volume", volumeSlider.value * 50 - 50);
-    //    currentVolume = volumeSlider.value;
-    //}
+    public void SetVolume()
+    {
+        audioMixer.SetFloat("Volume", volumeSlider.value * 50 - 50);
+        currentVolume = volumeSlider.value;
+    }
 
     public void SetFullscreen()
     {
@@ -51,28 +50,15 @@ public class SettingsController : MonoBehaviour
         Debug.Log(resolution);
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
-
-    public void SetQuality()
-    {
-        QualitySettings.SetQualityLevel(qualityDropdown.value);
-    }
-
     public void SaveSettings()
     {
-        PlayerPrefs.SetInt("QualitySettingPreference", qualityDropdown.value);
         PlayerPrefs.SetInt("ResolutionPreference", resolutionDropdown.value);
         PlayerPrefs.SetInt("FullscreenPreference", System.Convert.ToInt32(Screen.fullScreen));
-        //PlayerPrefs.SetFloat("VolumePreference", currentVolume);
+        PlayerPrefs.SetFloat("VolumePreference", currentVolume);
     }
 
     public void LoadSettings(int currentResolutionIndex)
     {
-        // Load Quality Setting
-        if (PlayerPrefs.HasKey("QualitySettingPreference"))
-            qualityDropdown.value = PlayerPrefs.GetInt("QualitySettingPreference");
-        else
-            qualityDropdown.value = 3;
-        qualityDropdown.RefreshShownValue();
 
         // Load Resolution
         if (PlayerPrefs.HasKey("ResolutionPreference"))
@@ -89,9 +75,9 @@ public class SettingsController : MonoBehaviour
         fullScreenToggle.isOn = Screen.fullScreen;
 
         // Load Volume Preference
-        //if (PlayerPrefs.HasKey("VolumePreference"))
-        //    volumeSlider.value = PlayerPrefs.GetFloat("VolumePreference");
-        //else
-        //    volumeSlider.value = 0.75f; // Default volume value
+        if (PlayerPrefs.HasKey("VolumePreference"))
+            volumeSlider.value = PlayerPrefs.GetFloat("VolumePreference");
+        else
+            volumeSlider.value = 0.75f; // Default volume value
     }
 }

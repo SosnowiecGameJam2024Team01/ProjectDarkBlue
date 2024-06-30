@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ChariotScene.unity
     guid: 8cca94871697dfa4fa952b5b4529c34c
+  - enabled: 1
+    path: Assets/Scenes/WonPlayersStatsScene.unity
+    guid: 67ad759970e85704d978791fd748bfa2
   m_configObjects: {}
