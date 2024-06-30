@@ -7,6 +7,7 @@ public class WheelParticleController : MonoBehaviour
 
     public ParticleSystem[] particleSystems;
     private Rigidbody2D rb;
+    [SerializeField] AudioSource drift;
     
     // Start is called before the first frame update
     void Start()
@@ -31,8 +32,8 @@ public class WheelParticleController : MonoBehaviour
     void SetRateOverDistanceMultiplier(float multiplier, ParticleSystem particleSystem)
     {
         var emissionModule = particleSystem.emission;
-
-        // Set the rateOverDistanceMultiplier directly
-        emissionModule.rateOverDistanceMultiplier = multiplier;
+		drift.volume = multiplier;
+		// Set the rateOverDistanceMultiplier directly
+		emissionModule.rateOverDistanceMultiplier = multiplier;
     }
 }

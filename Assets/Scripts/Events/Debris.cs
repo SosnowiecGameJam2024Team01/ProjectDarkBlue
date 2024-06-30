@@ -101,9 +101,10 @@ public class Debris : MonoBehaviour
         {
             case PickupType.Cabbages:
 				controller.EnableWobble(3);
+				SoundController.Instance.PlaySound(SoundType.Cabbages);
 				break;
             case PickupType.Wobble:
-                controller.EnableWobble(10);
+                controller.EnableWobble(3);
 				break;
 			case PickupType.Knockback:
                 controller.Knockback(transform.position, 1000);
@@ -112,13 +113,19 @@ public class Debris : MonoBehaviour
 				CanvasEffects.Instance.ShowBird(controller.gameObject.GetComponent<Player>().type);
 				break;
             case PickupType.AbilityVenus:
-                if (controller.GetComponent<Player>().type == PlayerType.Venus) 
+                if (controller.GetComponent<Player>().type == PlayerType.Venus)
+				{
+					SoundController.Instance.PlaySound(SoundType.ItemPickup);
 					controller.abilityBar = Mathf.Min(controller.abilityBar + 1, controller.maxAbilityBar);
+				}
 				else return;
 				break;
             case PickupType.AbilityDionysus:
-                if(controller.GetComponent<Player>().type == PlayerType.Dionysus) 
+				if (controller.GetComponent<Player>().type == PlayerType.Dionysus)
+				{
+					SoundController.Instance.PlaySound(SoundType.ItemPickup);
 					controller.abilityBar = Mathf.Min(controller.abilityBar + 1, controller.maxAbilityBar);
+				}
 				else return;
 				break;
         }
