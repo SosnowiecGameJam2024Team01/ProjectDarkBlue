@@ -44,12 +44,15 @@ public class MovementController : MonoBehaviour
         {
             inputVertical = Input.GetAxis("Vertical");
             inputHorizontal = Input.GetAxis("Horizontal");
+            if (Input.GetKeyDown(KeyCode.Keypad0)) { UseAbility(); }
         }
         else
         {
             inputVertical = Input.GetAxis("Vertical2");
             inputHorizontal = Input.GetAxis("Horizontal2");
+            if (Input.GetKeyDown(KeyCode.Space)) { UseAbility(); }
         }
+
 
         
         if ((Input.GetKeyDown(KeyCode.RightShift)&&arrows)||(Input.GetKeyDown(KeyCode.LeftShift) && !arrows)) { UseAbility(); }

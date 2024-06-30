@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using static Debris;
@@ -14,7 +15,9 @@ public class Debris : MonoBehaviour
 		Knockback,
 		Bird,
 		Moving,
-		None
+		None,
+        AbilityDionysus,
+		AbilityVenus,
 	}
 	public PickupType pickupType = PickupType.Ability;
     [SerializeField]float lifeTime = 3;
@@ -102,6 +105,16 @@ public class Debris : MonoBehaviour
 				break;
 			case PickupType.Bird:
 				CanvasEffects.Instance.ShowBird(controller.gameObject.GetComponent<Player>().type);
+				break;
+            case PickupType.AbilityVenus:
+                if (controller.GetComponent<Player>().type == PlayerType.Venus) 
+					controller.abilityBar = Mathf.Min(controller.abilityBar + 1, controller.maxAbilityBar);
+				else return;
+				break;
+            case PickupType.AbilityDionysus:
+                if(controller.GetComponent<Player>().type == PlayerType.Dionysus) 
+					controller.abilityBar = Mathf.Min(controller.abilityBar + 1, controller.maxAbilityBar);
+				else return;
 				break;
         }
 		on = false;
