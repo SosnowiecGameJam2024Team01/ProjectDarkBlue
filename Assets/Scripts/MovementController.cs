@@ -14,6 +14,8 @@ public class MovementController : MonoBehaviour
     [Header("Flying")]
     public ParticleSystem[] particlesToPause;
     public ParticleSystem[] particlesToPlay;
+    public AudioSource[] audioToPause;
+    public AudioSource[] audioToPlay;
     [Header("Throwing")]
     public GameObject throwPrefab;
     public Transform throwPos;
@@ -93,7 +95,16 @@ public class MovementController : MonoBehaviour
                 {
                     pSys.Stop();
                 }
-            }
+
+				foreach (var pSys in audioToPause)
+				{
+					pSys.Play();
+				}
+				foreach (var pSys in audioToPlay)
+				{
+					pSys.Stop();
+				}
+			}
         }
 
         rb.AddForce(forward);
@@ -194,5 +205,15 @@ public class MovementController : MonoBehaviour
         {
             pSys.Play();
         }
-    }
+
+		foreach (var pSys in audioToPause)
+		{
+			pSys.Stop();
+		}
+		foreach (var pSys in audioToPlay)
+		{
+			pSys.Play();
+		}
+
+	}
 }

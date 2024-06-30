@@ -10059,7 +10059,7 @@ AudioSource:
   m_GameObject: {fileID: 3501214241789154485}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 9dd7ce7cbef76304aa8bdf6770b50693, type: 2}
   m_audioClip: {fileID: 8300000, guid: 4ef6225ac4d2a04499be212af5106c9d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -20270,6 +20270,10 @@ MonoBehaviour:
   particlesToPlay:
   - {fileID: 4977676079156475171}
   - {fileID: 1697576450255459868}
+  audioToPause:
+  - {fileID: 4399426765759969295}
+  - {fileID: 1096770742461634787}
+  audioToPlay: []
   throwPrefab: {fileID: 113051098822847743, guid: 3391fabaeb279f7438c8a0f94424bcca, type: 3}
   throwPos: {fileID: 6024884954755540124}
   animator: {fileID: 3608540018257065584}

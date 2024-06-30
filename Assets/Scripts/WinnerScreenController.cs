@@ -12,8 +12,8 @@ public class WinnerScreenController : MonoBehaviour
     [SerializeField] private Sprite[] winners;
     [SerializeField] private Image bg;
     [SerializeField] private TextMeshProUGUI text;
-    [SerializeField] AudioSource dio;
-	[SerializeField] AudioSource wenus;
+    [SerializeField] AudioSource win;
+
 
 	private string theWinner;
     private string winnersList;
@@ -22,16 +22,15 @@ public class WinnerScreenController : MonoBehaviour
         Time.timeScale = 1;
         theWinner = PlayerPrefs.GetString("TheWinner");
         text.text = PlayerPrefs.GetString("WinnersInfo");
+        win.Play();
         Debug.Log(theWinner);
         switch(theWinner)
         {
             case "Wenus":
                 bg.sprite = winners[0];
-                wenus.Play();
                 break;
             case "Dionysus":
                 bg.sprite = winners[1];
-                dio.Play();
 				break;
             default: 
                 bg.sprite = null;

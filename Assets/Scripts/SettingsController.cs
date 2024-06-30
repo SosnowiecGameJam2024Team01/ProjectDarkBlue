@@ -52,6 +52,7 @@ public class SettingsController : MonoBehaviour
     }
     public void SaveSettings()
     {
+        Debug.Log("Is Saved!");
         PlayerPrefs.SetInt("ResolutionPreference", resolutionDropdown.value);
         PlayerPrefs.SetInt("FullscreenPreference", System.Convert.ToInt32(Screen.fullScreen));
         PlayerPrefs.SetFloat("VolumePreference", currentVolume);
