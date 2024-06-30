@@ -42,8 +42,10 @@ public class Debris : MonoBehaviour
 	private void Update()
 	{
 		if(reset) CheckIfToDestroyed();
-		transform.position = Vector2.MoveTowards(transform.position, transform.position + transform.up, speed * Time.deltaTime);
-	}
+        
+        transform.position = Vector2.MoveTowards(transform.position, transform.position + transform.up, speed * Time.deltaTime);
+        
+    }
 
 	void CheckIfToDestroyed()
     {
@@ -51,8 +53,10 @@ public class Debris : MonoBehaviour
 		if (lifetimeRemain > 0 || PlayerController.Instance.InVision(transform.position)) return;
         else
         {
-			transform.position = starting;
-			lifetimeRemain = lifeTime;
+            if (destroyed != null) destroyed.SetActive(false);
+            transform.position = starting;
+            if (destroyed != null) destroyed.SetActive(true);
+            lifetimeRemain = lifeTime;
 			//EventHandler.eventCount--;
 		}
 		

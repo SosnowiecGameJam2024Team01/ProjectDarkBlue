@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5255265365698214845}
   - component: {fileID: -2462841518918558167}
   m_Layer: 0
-  m_Name: oIL
+  m_Name: Oil
   m_TagString: PersistantEffect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
