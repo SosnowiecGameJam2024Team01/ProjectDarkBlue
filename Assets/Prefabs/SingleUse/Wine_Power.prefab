@@ -104,7 +104,7 @@ MonoBehaviour:
   speed: 0
   reset: 0
   respawn: 0
-  on: 0
+  on: 1
 --- !u!61 &4114642125361232442
 BoxCollider2D:
   m_ObjectHideFlags: 0
