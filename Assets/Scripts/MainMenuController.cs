@@ -11,9 +11,16 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private float speed = 100.0f;
     [SerializeField] private float accurance = 0.01f;
     [SerializeField] private Button[] buttons;
-    public void PlayGame()
+
+	private void Start()
+	{
+        MusicController.Instance.ChangeScene(Scene.Menu);
+	}
+
+	public void PlayGame()
     {
         SceneManager.LoadSceneAsync("ChariotScene");
+        MusicController.Instance.ChangeScene(Scene.Game);
     }
     private void InteractableInButtons(bool mode)
     {
