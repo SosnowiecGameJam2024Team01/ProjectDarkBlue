@@ -101,7 +101,7 @@ public class Debris : MonoBehaviour
                 controller.Knockback(transform.position, 1000);
 				break;
 			case PickupType.Bird:
-				CanvasEffects.Instance.ShowBird(collision.gameObject.GetComponent<Player>().type);
+				CanvasEffects.Instance.ShowBird(controller.gameObject.GetComponent<Player>().type);
 				break;
         }
 		on = false;
