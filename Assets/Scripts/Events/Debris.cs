@@ -10,7 +10,7 @@ public class Debris : MonoBehaviour
 {
 	public enum PickupType
 	{
-		Ability,
+		Cabbages,
 		Wobble,
 		Knockback,
 		Bird,
@@ -19,7 +19,7 @@ public class Debris : MonoBehaviour
         AbilityDionysus,
 		AbilityVenus,
 	}
-	public PickupType pickupType = PickupType.Ability;
+	public PickupType pickupType = PickupType.None;
     [SerializeField]float lifeTime = 3;
 	float lifetimeRemain;
 	public MovementController thrownByController = null;
@@ -28,7 +28,7 @@ public class Debris : MonoBehaviour
 	[SerializeField] bool reset;
 	[SerializeField] float respawn;
 	[SerializeField] bool on;
-
+	[SerializeField] GameObject destroyed;
 	Vector2 starting;
 
 	private void Start()
@@ -68,6 +68,7 @@ public class Debris : MonoBehaviour
 		}
 		transform.GetComponent<SpriteRenderer>().enabled = true; 
 		on = true;
+		if (destroyed != null) destroyed.SetActive(false);
 	}
 
 
@@ -94,8 +95,9 @@ public class Debris : MonoBehaviour
 
         switch (pickupType)
         {
-            case PickupType.Ability:
-				controller.abilityBar = Mathf.Min(controller.abilityBar+1, controller.maxAbilityBar);
+            case PickupType.Cabbages:
+				controller.EnableWobble(3);
+				destroyed.SetActive(true);
 				break;
             case PickupType.Wobble:
                 controller.EnableWobble(10);
